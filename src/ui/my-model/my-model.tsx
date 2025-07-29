@@ -1,9 +1,9 @@
 import { useBlabContext } from "@/context/blabContext";
 import { useAnimations, useGLTF } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, ThreeElements } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 
-const MyModel = (props) => {
+const MyModel = (props: ThreeElements['mesh']) => {
   const group = useRef(null);
   const { nodes, scene, animations } = useGLTF('/minimeV2_2.glb');
   const { actions, mixer } = useAnimations(animations, group);
