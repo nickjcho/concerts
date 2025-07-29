@@ -1,4 +1,4 @@
-import { useBlabContext } from "@/app/concerts/page";
+import { useBlabContext } from "@/context/blabContext";
 import { useAnimations, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useEffect, useRef } from "react";

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './typing-text.module.scss';
 import Ellipses from '../ellipses/ellipses';
 import FloaterBlink from '../floater-blink/floater-blink';
-import { useBlabContext } from '@/app/concerts/page';
+import { useBlabContext } from '@/context/blabContext';
 
 const TypingText = ({ text_list }: {
   text_list: string[]

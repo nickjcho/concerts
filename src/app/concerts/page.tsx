@@ -5,7 +5,7 @@ import { data } from "../../../public/data";
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import styles from './main-page.module.scss';
 import Image from "next/image";
-import { createContext, useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { SpotifyAlbum } from "@/models/spotify-album";
 import { SpotifyTrack } from "@/models/spotify-track";
 import TypingText from "@/ui/typing-text/typing-text";
@@ -15,8 +15,7 @@ import SpotifyPlayer from "@/ui/spotify-player/spotify-player";
 import { Canvas } from "@react-three/fiber";
 import { EffectComposer, HueSaturation } from "@react-three/postprocessing";
 import MyModel from "@/ui/my-model/my-model";
-
-const BlabContext = createContext({shouldBlab: false, triggerBlab: () => {}});
+import { BlabContext } from "@/context/blabContext";
   
 export default function MainPage() {
   const videos = data.videos;
@@ -145,5 +144,3 @@ export default function MainPage() {
     </div>
   )
 }
-
-export const useBlabContext = () => useContext(BlabContext);
