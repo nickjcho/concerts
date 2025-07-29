@@ -1,0 +1,33 @@
+@import "../colors.scss";
+
+.card {
+  display: flex;
+  width: 100%;
+}
+
+.video {
+  width: 100%;
+}
+
+.video_title {
+  width: 100%;
+  text-align: center;
+  background-color: black;
+  color: white;
+  border-radius: 8px 8px 0 0;
+  padding: 4px;
+  font-size: 18px;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $border-blue;
+  border-radius: 12px;
+}

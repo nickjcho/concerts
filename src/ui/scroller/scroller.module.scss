@@ -1,0 +1,48 @@
+@import "../colors.scss";
+
+.scrollable {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 32px;
+  box-shadow: 1px 1px 8px rgb(183, 183, 183);
+  background-color: #EEEEEE;
+  @include bubbly;
+}
+
+.scrollable_content {
+  overflow-y: scroll;
+  margin: 0 16px;
+  padding-right: 4px;
+  flex: 1;
+  border-radius: 16px;
+  background-color: $body-cream;
+}
+
+.speaker_bar {
+  width: 60px;
+  height: 1px;
+  border: 0px solid #fff;
+  border-radius: 16px;
+  background-color: #fff;
+  margin: 16px auto;
+  padding-bottom: 16px;
+  box-shadow: inset 1px 1px 8px rgb(194, 194, 194);
+  background: linear-gradient(to bottom, #ffffff, #d0d0d0);
+  border: 1px solid #bbbbbb;
+}
+
+.home_button {
+  background-color:#fff;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin: 16px auto;
+  padding-bottom: 16px;
+  flex-shrink: 0;
+  box-shadow: inset 1px 1px 8px rgb(127, 127, 127);
+  background: linear-gradient(to bottom, #ffffff, #d0d0d0);
+  border: 1px solid #bbbbbb;
+}

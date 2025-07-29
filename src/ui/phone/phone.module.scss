@@ -1,0 +1,87 @@
+@import "../colors.scss";
+
+.phone_body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 32px;
+  box-shadow: 1px 1px 8px rgb(183, 183, 183);
+  @include bubbly;
+}
+
+.content {
+  @include grid;
+  background-color: $body-cream;
+  display: flex;
+  height: 100%;
+  margin: 0 16px;
+  border-radius: 8px;
+  border: 1px solid $border-gray;
+  padding: 0px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.app_content {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  overflow: auto;
+}
+
+.app_icons {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 8px;
+}
+
+.app_tile {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  @include bubbly;
+  border-radius: 16px;
+  padding: 8px 16px;
+  height: fit-content;
+  margin-bottom: 8px;
+
+  p {
+    font-size: 1.2rem;
+  }
+}
+
+.app_icon {
+  display: flex;
+  margin-left: auto;
+}
+
+.speaker_bar {
+  width: 60px;
+  height: 1px;
+  border: 0px solid #fff;
+  border-radius: 16px;
+  background-color: #fff;
+  margin: 16px auto;
+  padding-bottom: 16px;
+  box-shadow: inset 1px 1px 4px rgb(127, 127, 127);
+  background: $body-cream;
+  border: 1px solid #bbbbbb;
+}
+
+.home_button {
+  background-color:#fff;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin: 16px auto;
+  padding-bottom: 16px;
+  flex-shrink: 0;
+  box-shadow: inset 1px 1px 4px rgb(127, 127, 127);
+  background: $body-cream;
+  border: 1px solid #bbbbbb;
+}
+

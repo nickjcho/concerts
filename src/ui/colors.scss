@@ -1,0 +1,32 @@
+$border-blue: #56cfef;
+$body-cream: #f5efef;
+$border-gray: #bbbbbb;
+
+@mixin bubbly {
+  box-shadow:
+    inset 4px 8px 4px rgba(255, 255, 255, 0.9),
+    1px 4px 6px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #ffffffe2, #b8f0ff);
+  border: 1px solid #bbbbbb;
+}
+
+@mixin grid {
+  background-image:
+    linear-gradient(to right, #ccc 1px, transparent 1px),
+    linear-gradient(to bottom, #ccc 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+@mixin creamy-background {
+  background-color: linear-gradient(to bottom, #595959e2, $body-cream);
+}
+
+@mixin glass {
+  background: rgba(255, 255, 255, 0.1);         /* transparent white */
+  backdrop-filter: blur(10px);                  /* background blur */
+  -webkit-backdrop-filter: blur(10px);          /* Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.3);    /* soft border */
+  border-radius: 12px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);     /* optional shadow */
+  padding: 20px;
+}

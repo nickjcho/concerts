@@ -1,0 +1,73 @@
+@import "../../ui/colors.scss";
+
+.album_table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+.album_header {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 8px 8px 8px;
+}
+
+.album_image {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-color: $border-blue;
+  img {
+    border-radius: 8px;
+    margin-right: 8px;
+    @include bubbly;
+  }
+}
+
+.album_name {
+  margin-right: auto;
+  margin-left: 8px;
+}
+
+.album_row {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  margin: 8px 8px 0 8px;
+  padding: 8px;
+  border-radius: 8px;
+  @include bubbly;
+}
+
+.track_duration {
+  margin-left: auto;
+}
+
+.album_info {
+  display: flex;
+  margin-left: 8px;
+  flex-direction: column;
+}
+
+.album_tracks {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.rank_toggle {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -20px;
+  right: 15%;
+  width: 100%;
+  margin: 0;
+  p {
+    padding: 2px 8px 0 8px;
+    font-size: 12px;
+    text-align: center;
+  }
+}
