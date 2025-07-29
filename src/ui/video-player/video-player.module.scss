@@ -18,16 +18,3 @@
   padding: 4px;
   font-size: 18px;
 }
-
-::-webkit-scrollbar {
-  display: none;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: $border-blue;
-  border-radius: 12px;
-}
