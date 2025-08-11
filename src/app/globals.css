@@ -8,6 +8,8 @@ body {
   max-height: 100vh;
   overflow-x: hidden;
   overflow-y: hidden;
+  margin: 0;
+  height: 100%;
 }
 
 body {
@@ -41,4 +43,3 @@ a {
   background: #56cfef;
   border-radius: 12px;
 }
-
