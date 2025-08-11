@@ -22,12 +22,14 @@
   padding: 0px;
   overflow-y: auto;
   flex: 1;
+  align-items: flex-start;
 }
 
 .app_content {
   width: 100%;
   align-items: center;
   display: flex;
+  margin: auto 0;
   overflow: auto;
 }
 

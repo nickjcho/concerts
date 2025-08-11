@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styles from './typing-text.module.scss';
 import Ellipses from '../ellipses/ellipses';
 import FloaterBlink from '../floater-blink/floater-blink';
-import { useBlabContext } from '@/context/blabContext';
+import { useDispatch } from 'react-redux';
+import { startBlab, stopBlab } from '@/storage/slices/blabSlice';
 
 const TypingText = ({ text_list }: {
   text_list: string[]
@@ -11,7 +12,16 @@ const TypingText = ({ text_list }: {
   const [index, setIndex] = useState(0);
   const [currentTextIndex, setCurrentTextIndex] = useState<number>(0);
   const [waiting, setWaiting] = useState<boolean>(false);
-  const { triggerBlab } = useBlabContext();
+  const storeDispatch = useDispatch();
+
+  const triggerBlab = useCallback(() => {
+      storeDispatch(startBlab());
+      setTimeout(() => storeDispatch(stopBlab()), 5500);
+  }, [storeDispatch]);
+
+  useEffect(() => {
+    triggerBlab();
+  }, [triggerBlab])
   
   const goNextText = () => {
     if (currentTextIndex < (text_list.length - 1)) {
@@ -44,7 +54,7 @@ const TypingText = ({ text_list }: {
     <>    
       <div className={styles.comments} onClick={goNextText}>
         <div className={styles.namecard}>
-          Nicholas
+          Zeeno
         </div>
         <div className={styles.text}>
           {displayedText}{waiting && <Ellipses />}

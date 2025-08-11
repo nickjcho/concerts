@@ -1,41 +1,38 @@
 'use client';
 
-import VideoPlayer from "../../ui/video-player/video-player";
-import { data } from "../../../public/data";
-import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
-import styles from './main-page.module.scss';
+import VideoPlayer from "../../../ui/video-player/video-player";
+import { data } from "../../../../public/data";
+import styles from './page.module.scss';
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { SpotifyAlbum } from "@/models/spotify-album";
 import { SpotifyTrack } from "@/models/spotify-track";
 import TypingText from "@/ui/typing-text/typing-text";
 import AlbumTable from "@/ui/album-table/album-table";
 import Phone from "@/ui/phone/phone";
 import SpotifyPlayer from "@/ui/spotify-player/spotify-player";
-import { Canvas } from "@react-three/fiber";
-import { EffectComposer, HueSaturation } from "@react-three/postprocessing";
-import MyModel from "@/ui/my-model/my-model";
-import { BlabContext } from "@/context/blabContext";
+import { useParams } from "next/navigation";
+import MyModelCanvas from "@/ui/my-model/my-model-canvas";
   
 export default function MainPage() {
-  const videos = data.videos;
+  const params = useParams();
+  const concertData = useMemo(() => {
+    const filteredData = data.filter((concert) => {
+      return concert.id === Number(params?.id);
+    })
+    return filteredData[0]
+
+  }, [params]);
+  const videos = concertData.videos;
 
   const [albumInfo, setAlbumInfo] = useState<SpotifyAlbum>({} as SpotifyAlbum);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [activeTrackId, setActiveTrackId] = useState<string>("");
-  const [shouldBlab, setShouldBlab] = useState<boolean>(false);
-
-
-  const triggerBlab = () => {
-    console.log('blab triggered')
-    setShouldBlab(true);
-    setTimeout(() => setShouldBlab(false), 5500);
-  };
 
   useEffect(() => {
     const fetchArtist = (async () => {
       const res = await fetch(
-        `/api/spotify?albumId=${encodeURIComponent(`${data.album_id}`)}`
+        `/api/spotify?albumId=${encodeURIComponent(`${concertData.album_id}`)}`
       );
       const resData = await res.json();
       console.log(resData)
@@ -62,8 +59,7 @@ export default function MainPage() {
       setIsLoading(false);
     });
     fetchArtist();
-    triggerBlab();
-  }, []);
+  }, [concertData]);
     console.log(albumInfo);
   return (
     <div className={styles.page_container}>
@@ -71,7 +67,7 @@ export default function MainPage() {
         <div className={styles.header_row}>
           <div className={styles.profile_photo}>
             <Image
-              src={data.artist_photo}
+              src={concertData.artist_photo}
               layout="responsive"
               height={100}
               width={100}
@@ -80,11 +76,11 @@ export default function MainPage() {
           </div>
           <div className={styles.header_text}>
             <div className={styles.flex_column}>
-              <h1>{data.artist_name}</h1>
-              <h3>{data.tour_name}</h3>
+              <h1>{concertData.artist_name}</h1>
+              <h3>{concertData.tour_name}</h3>
             </div>
             <div className={styles.tour_info}>
-              <h4>{data.date} | {data.location} | {data.venue}</h4>
+              <h4>{concertData.date} | {concertData.location} | {concertData.venue}</h4>
             </div>
           </div>
           <div className={styles.spotify_player}>
@@ -97,7 +93,7 @@ export default function MainPage() {
             <Phone>
               <div className={styles.phone_app_content} id="poster">
                 <Image
-                  src={data.poster_image}
+                  src={concertData.poster_image}
                   layout="responsive"
                   height={100}
                   width={100}
@@ -111,7 +107,7 @@ export default function MainPage() {
                 <div className={styles.phone_app_content} id="album">
                   <AlbumTable 
                     albumInfo={albumInfo}
-                    albumRanking={data.album_ranking}
+                    albumRanking={concertData.album_ranking}
                     onTrackChange={setActiveTrackId}/>
                 </div>
               )}
@@ -119,25 +115,10 @@ export default function MainPage() {
           </div>
           
           <div className={styles.opinions_column}>
-            <BlabContext.Provider value={{shouldBlab, triggerBlab}}>
-              <div className={styles.canvas_container}>
-                <Canvas>
-                  <PerspectiveCamera
-                    makeDefault
-                    position={[4, 0, 0]}
-                  />
-                  <ambientLight intensity={1} />
-                  <directionalLight intensity={2.5} position={[5, 1, 7]} />
-                  <OrbitControls />
-                  <MyModel position={[0, 0, 0]} />
-
-                  <EffectComposer>
-                    <HueSaturation saturation={0.4} />
-                  </EffectComposer>
-                </Canvas>
-              </div>
-              <TypingText text_list={data.concert_notes}/>
-            </BlabContext.Provider>
+            <div className={styles.canvas_container}>
+              <MyModelCanvas />
+            </div>
+            <TypingText text_list={concertData.concert_notes}/>
           </div>
         </div>
       </div>

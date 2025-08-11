@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
+import GridBackground from "@/ui/grid-background/grid-background";
+import StoreProvider from "@/storage/StoreProvider";
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -24,7 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${nunito.className}`}>
-        {children}
+        <StoreProvider>
+          <GridBackground />
+          {children}
+        </StoreProvider>
       </body>
     </html>
   );

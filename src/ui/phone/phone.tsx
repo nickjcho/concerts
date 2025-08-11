@@ -68,7 +68,7 @@ const Phone = ({ children }: { children: ReactNode }) => {
                 <SvgIcon component={SlideshowIcon} />
               </div>
             </motion.div>
-                        <motion.div
+            <motion.div
               className={styles.app_tile}
               onClick={() => handleOpen("album")}
               variants={buttonHover}
